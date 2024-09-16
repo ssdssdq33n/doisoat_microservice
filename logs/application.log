@@ -1,0 +1,741 @@
+2024-09-07T00:00:21.189+07:00  WARN 28540 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] s.a.r.l.ConditionalRejectingErrorHandler : Execution of Rabbit message listener failed.
+
+org.springframework.amqp.rabbit.support.ListenerExecutionFailedException: Listener method could not be invoked with the incoming message
+Endpoint handler details:
+Method [public void com.devteria.partnersession.service.ArgumentControlByDayService.consumerJsonMessage(com.devteria.partnersession.dto.request.ArgumentControlByDayRequest,org.springframework.amqp.core.Message,com.rabbitmq.client.Channel)]
+Bean [com.devteria.partnersession.service.ArgumentControlByDayService@3e604aa3]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:282) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandlerAndProcessResult(MessagingMessageListenerAdapter.java:225) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:149) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1682) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1604) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1592) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1583) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListenerAndHandleException(AbstractMessageListenerContainer.java:1528) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.lambda$executeListener$8(AbstractMessageListenerContainer.java:1506) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at io.micrometer.observation.Observation.observe(Observation.java:499) ~[micrometer-observation-1.13.3.jar:1.13.3]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1506) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:1082) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:1018) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1421) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1322) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.springframework.messaging.converter.MessageConversionException: Cannot convert from [[B] to [com.devteria.partnersession.dto.request.ArgumentControlByDayRequest] for GenericMessage [payload=byte[139], headers={amqp_receivedDeliveryMode=PERSISTENT, amqp_receivedExchange=doisoat_exchange, amqp_deliveryTag=1, amqp_consumerQueue=doisoat_json, amqp_redelivered=false, amqp_receivedRoutingKey=doisoat_routing_json_key, amqp_contentEncoding=UTF-8, id=bb9ecff6-6bd6-6076-4a7c-9c17d96eb0ae, amqp_consumerTag=amq.ctag-bHteOGp4inVzZPJTdzpoKg, amqp_lastInBatch=false, contentType=application/json, __TypeId__=com.devteria.partnersession.dto.request.ArgumentControlByDayRequest, timestamp=1725642021181}]
+	at org.springframework.messaging.handler.annotation.support.PayloadMethodArgumentResolver.resolveArgument(PayloadMethodArgumentResolver.java:151) ~[spring-messaging-6.1.12.jar:6.1.12]
+	at org.springframework.amqp.rabbit.listener.adapter.AmqpMessageHandlerMethodFactory$OptionalEmptyAwarePayloadArgumentResolver.resolveArgument(AmqpMessageHandlerMethodFactory.java:99) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.messaging.handler.invocation.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:118) ~[spring-messaging-6.1.12.jar:6.1.12]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:147) ~[spring-messaging-6.1.12.jar:6.1.12]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:115) ~[spring-messaging-6.1.12.jar:6.1.12]
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:75) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:278) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	... 15 common frames omitted
+
+2024-09-07T00:00:21.261+07:00  WARN 28540 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] ingErrorHandler$DefaultExceptionStrategy : Fatal message conversion error; message rejected; it will be dropped or routed to a dead letter exchange, if so configured: (Body:'[B@5e51121(byte[139])' MessageProperties [headers={__TypeId__=com.devteria.partnersession.dto.request.ArgumentControlByDayRequest}, contentType=application/json, contentEncoding=UTF-8, contentLength=0, receivedDeliveryMode=PERSISTENT, priority=0, redelivered=false, receivedExchange=doisoat_exchange, receivedRoutingKey=doisoat_routing_json_key, deliveryTag=1, consumerTag=amq.ctag-bHteOGp4inVzZPJTdzpoKg, consumerQueue=doisoat_json])
+2024-09-07T00:00:21.262+07:00 ERROR 28540 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] o.s.a.r.l.SimpleMessageListenerContainer : Execution of Rabbit message listener failed, and the error handler threw an exception
+
+org.springframework.amqp.AmqpRejectAndDontRequeueException: Error Handler converted exception to fatal
+	at org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler.handleError(ConditionalRejectingErrorHandler.java:147) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeErrorHandler(AbstractMessageListenerContainer.java:1475) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.handleListenerException(AbstractMessageListenerContainer.java:1768) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListenerAndHandleException(AbstractMessageListenerContainer.java:1549) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.lambda$executeListener$8(AbstractMessageListenerContainer.java:1506) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at io.micrometer.observation.Observation.observe(Observation.java:499) ~[micrometer-observation-1.13.3.jar:1.13.3]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1506) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:1082) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:1018) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1421) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1322) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.springframework.amqp.rabbit.support.ListenerExecutionFailedException: Listener method could not be invoked with the incoming message
+Endpoint handler details:
+Method [public void com.devteria.partnersession.service.ArgumentControlByDayService.consumerJsonMessage(com.devteria.partnersession.dto.request.ArgumentControlByDayRequest,org.springframework.amqp.core.Message,com.rabbitmq.client.Channel)]
+Bean [com.devteria.partnersession.service.ArgumentControlByDayService@3e604aa3]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:282) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandlerAndProcessResult(MessagingMessageListenerAdapter.java:225) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:149) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1682) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1604) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1592) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1583) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListenerAndHandleException(AbstractMessageListenerContainer.java:1528) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	... 8 common frames omitted
+Caused by: org.springframework.messaging.converter.MessageConversionException: Cannot convert from [[B] to [com.devteria.partnersession.dto.request.ArgumentControlByDayRequest] for GenericMessage [payload=byte[139], headers={amqp_receivedDeliveryMode=PERSISTENT, amqp_receivedExchange=doisoat_exchange, amqp_deliveryTag=1, amqp_consumerQueue=doisoat_json, amqp_redelivered=false, amqp_receivedRoutingKey=doisoat_routing_json_key, amqp_contentEncoding=UTF-8, id=bb9ecff6-6bd6-6076-4a7c-9c17d96eb0ae, amqp_consumerTag=amq.ctag-bHteOGp4inVzZPJTdzpoKg, amqp_lastInBatch=false, contentType=application/json, __TypeId__=com.devteria.partnersession.dto.request.ArgumentControlByDayRequest, timestamp=1725642021181}]
+	at org.springframework.messaging.handler.annotation.support.PayloadMethodArgumentResolver.resolveArgument(PayloadMethodArgumentResolver.java:151) ~[spring-messaging-6.1.12.jar:6.1.12]
+	at org.springframework.amqp.rabbit.listener.adapter.AmqpMessageHandlerMethodFactory$OptionalEmptyAwarePayloadArgumentResolver.resolveArgument(AmqpMessageHandlerMethodFactory.java:99) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.messaging.handler.invocation.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:118) ~[spring-messaging-6.1.12.jar:6.1.12]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:147) ~[spring-messaging-6.1.12.jar:6.1.12]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:115) ~[spring-messaging-6.1.12.jar:6.1.12]
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:75) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:278) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	... 15 common frames omitted
+
+2024-09-07T00:02:26.255+07:00  INFO 28540 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2024-09-07T00:02:26.385+07:00  INFO 28540 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2024-09-07T00:02:28.018+07:00  INFO 28540 --- [DoiSoatGD] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-07T00:02:28.488+07:00  INFO 28540 --- [DoiSoatGD] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-07T00:02:29.024+07:00  INFO 28540 --- [DoiSoatGD] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-07T00:02:55.963+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : Starting PartnerSessionApplication using Java 21 with PID 19672 (E:\Learn\microservice-doisoatBE\partner-session\target\classes started by tuana in E:\Learn\microservice-doisoatBE)
+2024-09-07T00:02:55.968+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : No active profile set, falling back to 1 default profile: "default"
+2024-09-07T00:02:56.086+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-07T00:02:56.087+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-07T00:03:00.309+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-07T00:03:00.719+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 389 ms. Found 11 JPA repository interfaces.
+2024-09-07T00:03:03.035+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-09-07T00:03:03.066+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-07T00:03:03.067+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-09-07T00:03:03.187+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] o.a.c.c.C.[.[.[/partnersession]          : Initializing Spring embedded WebApplicationContext
+2024-09-07T00:03:03.188+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7099 ms
+2024-09-07T00:03:04.128+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-07T00:03:04.447+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-07T00:03:04.533+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-07T00:03:05.274+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-07T00:03:05.343+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-07T00:03:06.392+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6ecd788b
+2024-09-07T00:03:06.399+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-07T00:03:09.354+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-07T00:03:10.045+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-07T00:03:10.895+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-07T00:03:13.234+07:00  WARN 19672 --- [DoiSoatGD] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-07T00:03:14.616+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-09-07T00:03:15.955+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-07T00:03:16.199+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/partnersession'
+2024-09-07T00:03:16.205+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T00:03:16.497+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#3d3e29a:0/SimpleConnection@7558613d [delegate=amqp://guest@127.0.0.1:5672/, localPort=64613]
+2024-09-07T00:03:16.638+07:00 ERROR 19672 --- [DoiSoatGD] [AMQP Connection 127.0.0.1:5672] o.s.a.r.c.CachingConnectionFactory       : Shutdown Signal: channel error; protocol method: #method<channel.close>(reply-code=406, reply-text=PRECONDITION_FAILED - inequivalent arg 'type' for exchange 'doisoat_exchange' in vhost '/': received 'topic' but current is 'direct', class-id=40, method-id=10)
+2024-09-07T00:03:17.683+07:00 ERROR 19672 --- [DoiSoatGD] [AMQP Connection 127.0.0.1:5672] o.s.a.r.c.CachingConnectionFactory       : Shutdown Signal: channel error; protocol method: #method<channel.close>(reply-code=406, reply-text=PRECONDITION_FAILED - inequivalent arg 'type' for exchange 'doisoat_exchange' in vhost '/': received 'topic' but current is 'direct', class-id=40, method-id=10)
+2024-09-07T00:03:19.700+07:00 ERROR 19672 --- [DoiSoatGD] [AMQP Connection 127.0.0.1:5672] o.s.a.r.c.CachingConnectionFactory       : Shutdown Signal: channel error; protocol method: #method<channel.close>(reply-code=406, reply-text=PRECONDITION_FAILED - inequivalent arg 'type' for exchange 'doisoat_exchange' in vhost '/': received 'topic' but current is 'direct', class-id=40, method-id=10)
+2024-09-07T00:03:23.709+07:00 ERROR 19672 --- [DoiSoatGD] [AMQP Connection 127.0.0.1:5672] o.s.a.r.c.CachingConnectionFactory       : Shutdown Signal: channel error; protocol method: #method<channel.close>(reply-code=406, reply-text=PRECONDITION_FAILED - inequivalent arg 'type' for exchange 'doisoat_exchange' in vhost '/': received 'topic' but current is 'direct', class-id=40, method-id=10)
+2024-09-07T00:03:28.731+07:00 ERROR 19672 --- [DoiSoatGD] [AMQP Connection 127.0.0.1:5672] o.s.a.r.c.CachingConnectionFactory       : Shutdown Signal: channel error; protocol method: #method<channel.close>(reply-code=406, reply-text=PRECONDITION_FAILED - inequivalent arg 'type' for exchange 'doisoat_exchange' in vhost '/': received 'topic' but current is 'direct', class-id=40, method-id=10)
+2024-09-07T00:03:28.736+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] o.s.a.r.l.SimpleMessageListenerContainer : Broker not available; cannot force queue declarations during start: java.io.IOException
+2024-09-07T00:03:28.827+07:00  INFO 19672 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : Started PartnerSessionApplication in 33.965 seconds (process running for 36.962)
+2024-09-07T00:03:29.419+07:00  INFO 19672 --- [DoiSoatGD] [RMI TCP Connection(2)-172.22.208.1] o.a.c.c.C.[.[.[/partnersession]          : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-07T00:03:29.419+07:00  INFO 19672 --- [DoiSoatGD] [RMI TCP Connection(2)-172.22.208.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-07T00:03:29.423+07:00  INFO 19672 --- [DoiSoatGD] [RMI TCP Connection(2)-172.22.208.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2024-09-07T00:05:56.627+07:00  INFO 19672 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.s.ArgumentControlByDayService      : Received JSON message -> ArgumentControlByDayRequest(name=DS070924002, salesPartner=Sacombank, supplyPartner=Iris, dateControl=06/07/2024, validFromDate=null, validToDate=null)
+2024-09-07T00:05:56.761+07:00  INFO 19672 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.service.GetListCsvReport           : doc file csv: C:\\DoiSoat\2024\Sacombank\DS-T07\DoiSoatPROTON_05072024_07072024.csv
+2024-09-07T00:05:57.052+07:00  INFO 19672 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.service.GetListCsvReport           : doc file csv: C:\\DoiSoat\2024\Proton\DS-T07\07-07 
+2024-09-07T00:05:57.450+07:00  INFO 19672 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.service.ProcessDoiSoatProtonIris   : doc file xlsx: C:\\DoiSoat\2024\Iris\DS-T07\07-07 
+2024-09-07T00:05:57.533+07:00  WARN 19672 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] s.a.r.l.ConditionalRejectingErrorHandler : Execution of Rabbit message listener failed.
+
+org.springframework.amqp.rabbit.support.ListenerExecutionFailedException: Listener method 'public void com.devteria.partnersession.service.ArgumentControlByDayService.consumerJsonMessage(com.devteria.partnersession.dto.request.ArgumentControlByDayRequest)' threw exception
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:287) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandlerAndProcessResult(MessagingMessageListenerAdapter.java:225) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:149) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1682) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1604) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1592) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1583) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListenerAndHandleException(AbstractMessageListenerContainer.java:1528) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.lambda$executeListener$8(AbstractMessageListenerContainer.java:1506) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at io.micrometer.observation.Observation.observe(Observation.java:499) ~[micrometer-observation-1.13.3.jar:1.13.3]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1506) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:1082) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:1018) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1421) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1322) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: com.devteria.partnersession.exception.AppException: Invalid date
+	at com.devteria.partnersession.service.ArgumentControlByDayService.createArgumentControlByDay(ArgumentControlByDayService.java:271) ~[classes/:na]
+	at com.devteria.partnersession.service.ArgumentControlByDayService.consumerJsonMessage(ArgumentControlByDayService.java:114) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:169) ~[spring-messaging-6.1.12.jar:6.1.12]
+	at org.springframework.amqp.rabbit.listener.adapter.KotlinAwareInvocableHandlerMethod.doInvoke(KotlinAwareInvocableHandlerMethod.java:45) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:119) ~[spring-messaging-6.1.12.jar:6.1.12]
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:75) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:278) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	... 15 common frames omitted
+
+2024-09-07T00:05:57.553+07:00  INFO 19672 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.s.ArgumentControlByDayService      : Received JSON message -> ArgumentControlByDayRequest(name=DS070924002, salesPartner=Sacombank, supplyPartner=Iris, dateControl=06/07/2024, validFromDate=null, validToDate=null)
+2024-09-07T00:09:56.700+07:00  INFO 19672 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2024-09-07T00:09:56.834+07:00  INFO 19672 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2024-09-07T00:09:58.108+07:00  INFO 19672 --- [DoiSoatGD] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-07T00:09:58.436+07:00  INFO 19672 --- [DoiSoatGD] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-07T00:09:58.861+07:00  INFO 19672 --- [DoiSoatGD] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-07T08:53:12.281+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : Starting PartnerSessionApplication using Java 21 with PID 34716 (E:\Learn\microservice-doisoatBE\partner-session\target\classes started by tuana in E:\Learn\microservice-doisoatBE)
+2024-09-07T08:53:12.286+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : No active profile set, falling back to 1 default profile: "default"
+2024-09-07T08:53:12.417+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-07T08:53:12.418+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-07T08:53:17.055+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-07T08:53:17.709+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 483 ms. Found 11 JPA repository interfaces.
+2024-09-07T08:53:21.276+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-09-07T08:53:21.301+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-07T08:53:21.301+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-09-07T08:53:21.400+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] o.a.c.c.C.[.[.[/partnersession]          : Initializing Spring embedded WebApplicationContext
+2024-09-07T08:53:21.400+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 8981 ms
+2024-09-07T08:53:22.007+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-07T08:53:22.167+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-07T08:53:22.256+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-07T08:53:22.831+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-07T08:53:22.884+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-07T08:53:24.166+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4440fdc5
+2024-09-07T08:53:24.169+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-07T08:53:26.081+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-07T08:53:26.539+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-07T08:53:27.149+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-07T08:53:29.057+07:00  WARN 34716 --- [DoiSoatGD] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-07T08:53:30.164+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-09-07T08:53:31.463+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-07T08:53:31.712+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/partnersession'
+2024-09-07T08:53:31.718+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:53:31.728+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] o.s.a.r.l.SimpleMessageListenerContainer : Broker not available; cannot force queue declarations during start: java.net.ConnectException: Connection refused: no further information
+2024-09-07T08:53:31.741+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:53:31.759+07:00 ERROR 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] o.s.a.r.l.SimpleMessageListenerContainer : Failed to check/redeclare auto-delete queue(s).
+
+org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: no further information
+	at org.springframework.amqp.rabbit.support.RabbitExceptionTranslator.convertRabbitAccessException(RabbitExceptionTranslator.java:61) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.createBareConnection(AbstractConnectionFactory.java:622) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.CachingConnectionFactory.createConnection(CachingConnectionFactory.java:726) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.ConnectionFactoryUtils.createConnection(ConnectionFactoryUtils.java:257) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.doExecute(RabbitTemplate.java:2249) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.execute(RabbitTemplate.java:2222) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.execute(RabbitTemplate.java:2202) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.core.RabbitAdmin.getQueueInfo(RabbitAdmin.java:467) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.core.RabbitAdmin.getQueueProperties(RabbitAdmin.java:451) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.attemptDeclarations(AbstractMessageListenerContainer.java:1960) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.redeclareElementsIfNecessary(AbstractMessageListenerContainer.java:1924) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.initialize(SimpleMessageListenerContainer.java:1479) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1320) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:751) ~[na:na]
+	at com.rabbitmq.client.impl.SocketFrameHandlerFactory.create(SocketFrameHandlerFactory.java:61) ~[amqp-client-5.21.0.jar:5.21.0]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:1249) ~[amqp-client-5.21.0.jar:5.21.0]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:1198) ~[amqp-client-5.21.0.jar:5.21.0]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.connectAddresses(AbstractConnectionFactory.java:668) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.connect(AbstractConnectionFactory.java:637) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.createBareConnection(AbstractConnectionFactory.java:584) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	... 12 common frames omitted
+
+2024-09-07T08:53:31.766+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:53:31.787+07:00  INFO 34716 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : Started PartnerSessionApplication in 20.79 seconds (process running for 23.748)
+2024-09-07T08:53:32.675+07:00  INFO 34716 --- [DoiSoatGD] [RMI TCP Connection(5)-172.22.208.1] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:53:32.677+07:00  WARN 34716 --- [DoiSoatGD] [RMI TCP Connection(5)-172.22.208.1] o.s.b.a.amqp.RabbitHealthIndicator       : Rabbit health check failed
+
+org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: no further information
+	at org.springframework.amqp.rabbit.support.RabbitExceptionTranslator.convertRabbitAccessException(RabbitExceptionTranslator.java:61) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.createBareConnection(AbstractConnectionFactory.java:622) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.CachingConnectionFactory.createConnection(CachingConnectionFactory.java:726) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.ConnectionFactoryUtils.createConnection(ConnectionFactoryUtils.java:257) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.doExecute(RabbitTemplate.java:2249) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.execute(RabbitTemplate.java:2222) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.execute(RabbitTemplate.java:2202) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.boot.actuate.amqp.RabbitHealthIndicator.getVersion(RabbitHealthIndicator.java:49) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.amqp.RabbitHealthIndicator.doHealthCheck(RabbitHealthIndicator.java:44) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.AbstractHealthIndicator.health(AbstractHealthIndicator.java:82) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthIndicator.getHealth(HealthIndicator.java:37) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpoint.getHealth(HealthEndpoint.java:82) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpoint.getHealth(HealthEndpoint.java:41) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getLoggedHealth(HealthEndpointSupport.java:172) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getContribution(HealthEndpointSupport.java:145) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getAggregateContribution(HealthEndpointSupport.java:156) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getContribution(HealthEndpointSupport.java:141) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getHealth(HealthEndpointSupport.java:110) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getHealth(HealthEndpointSupport.java:81) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpoint.health(HealthEndpoint.java:76) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpoint.health(HealthEndpoint.java:66) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:281) ~[spring-core-6.1.12.jar:6.1.12]
+	at org.springframework.boot.actuate.endpoint.invoke.reflect.ReflectiveOperationInvoker.invoke(ReflectiveOperationInvoker.java:74) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.endpoint.annotation.AbstractDiscoveredOperation.invoke(AbstractDiscoveredOperation.java:60) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.endpoint.jmx.EndpointMBean.invoke(EndpointMBean.java:124) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.endpoint.jmx.EndpointMBean.invoke(EndpointMBean.java:97) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at java.management/com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:803) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:802) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1472) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1310) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1405) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829) ~[na:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:714) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:751) ~[na:na]
+	at com.rabbitmq.client.impl.SocketFrameHandlerFactory.create(SocketFrameHandlerFactory.java:61) ~[amqp-client-5.21.0.jar:5.21.0]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:1249) ~[amqp-client-5.21.0.jar:5.21.0]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:1198) ~[amqp-client-5.21.0.jar:5.21.0]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.connectAddresses(AbstractConnectionFactory.java:668) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.connect(AbstractConnectionFactory.java:637) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.createBareConnection(AbstractConnectionFactory.java:584) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	... 47 common frames omitted
+
+2024-09-07T08:53:32.684+07:00  INFO 34716 --- [DoiSoatGD] [RMI TCP Connection(4)-172.22.208.1] o.a.c.c.C.[.[.[/partnersession]          : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-07T08:53:32.686+07:00  INFO 34716 --- [DoiSoatGD] [RMI TCP Connection(4)-172.22.208.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-07T08:53:32.692+07:00  INFO 34716 --- [DoiSoatGD] [RMI TCP Connection(4)-172.22.208.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2024-09-07T08:53:36.960+07:00  WARN 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] o.s.a.r.l.SimpleMessageListenerContainer : Consumer raised exception, processing can restart if the connection factory supports it. Exception summary: org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: no further information
+2024-09-07T08:53:36.974+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] o.s.a.r.l.SimpleMessageListenerContainer : Restarting Consumer@6d10a887: tags=[[]], channel=null, acknowledgeMode=MANUAL local queue size=0
+2024-09-07T08:53:36.979+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:53:36.982+07:00 ERROR 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Failed to check/redeclare auto-delete queue(s).
+2024-09-07T08:53:36.982+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:53:42.159+07:00  WARN 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Consumer raised exception, processing can restart if the connection factory supports it. Exception summary: org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: no further information
+2024-09-07T08:53:42.159+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Restarting Consumer@235bb0f1: tags=[[]], channel=null, acknowledgeMode=MANUAL local queue size=0
+2024-09-07T08:53:42.164+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-3] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:53:42.171+07:00 ERROR 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-3] o.s.a.r.l.SimpleMessageListenerContainer : Failed to check/redeclare auto-delete queue(s).
+2024-09-07T08:53:42.171+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-3] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:53:47.381+07:00  WARN 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-3] o.s.a.r.l.SimpleMessageListenerContainer : Consumer raised exception, processing can restart if the connection factory supports it. Exception summary: org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: no further information
+2024-09-07T08:53:47.388+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-3] o.s.a.r.l.SimpleMessageListenerContainer : Restarting Consumer@69f8af41: tags=[[]], channel=null, acknowledgeMode=MANUAL local queue size=0
+2024-09-07T08:53:47.414+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-4] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:53:47.437+07:00 ERROR 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-4] o.s.a.r.l.SimpleMessageListenerContainer : Failed to check/redeclare auto-delete queue(s).
+2024-09-07T08:53:47.437+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-4] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:53:52.492+07:00  WARN 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-4] o.s.a.r.l.SimpleMessageListenerContainer : Consumer raised exception, processing can restart if the connection factory supports it. Exception summary: org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: no further information
+2024-09-07T08:53:52.504+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-4] o.s.a.r.l.SimpleMessageListenerContainer : Restarting Consumer@12a69e53: tags=[[]], channel=null, acknowledgeMode=MANUAL local queue size=0
+2024-09-07T08:53:52.538+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-5] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:53:52.557+07:00 ERROR 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-5] o.s.a.r.l.SimpleMessageListenerContainer : Failed to check/redeclare auto-delete queue(s).
+2024-09-07T08:53:52.557+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-5] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:53:57.633+07:00  WARN 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-5] o.s.a.r.l.SimpleMessageListenerContainer : Consumer raised exception, processing can restart if the connection factory supports it. Exception summary: org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: no further information
+2024-09-07T08:53:57.643+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-5] o.s.a.r.l.SimpleMessageListenerContainer : Restarting Consumer@473afd96: tags=[[]], channel=null, acknowledgeMode=MANUAL local queue size=0
+2024-09-07T08:53:57.689+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-6] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:53:57.710+07:00 ERROR 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-6] o.s.a.r.l.SimpleMessageListenerContainer : Failed to check/redeclare auto-delete queue(s).
+2024-09-07T08:53:57.719+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-6] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:54:02.950+07:00  WARN 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-6] o.s.a.r.l.SimpleMessageListenerContainer : Consumer raised exception, processing can restart if the connection factory supports it. Exception summary: org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: no further information
+2024-09-07T08:54:02.957+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-6] o.s.a.r.l.SimpleMessageListenerContainer : Restarting Consumer@339b3b1f: tags=[[]], channel=null, acknowledgeMode=MANUAL local queue size=0
+2024-09-07T08:54:03.022+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-7] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:54:03.076+07:00 ERROR 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-7] o.s.a.r.l.SimpleMessageListenerContainer : Failed to check/redeclare auto-delete queue(s).
+2024-09-07T08:54:03.084+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-7] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:54:08.303+07:00  WARN 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-7] o.s.a.r.l.SimpleMessageListenerContainer : Consumer raised exception, processing can restart if the connection factory supports it. Exception summary: org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: no further information
+2024-09-07T08:54:08.308+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-7] o.s.a.r.l.SimpleMessageListenerContainer : Restarting Consumer@6695cbbc: tags=[[]], channel=null, acknowledgeMode=MANUAL local queue size=0
+2024-09-07T08:54:08.403+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-8] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:54:08.836+07:00 ERROR 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-8] o.s.a.r.l.SimpleMessageListenerContainer : Failed to check/redeclare auto-delete queue(s).
+2024-09-07T08:54:08.955+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-8] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:54:14.182+07:00  WARN 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-8] o.s.a.r.l.SimpleMessageListenerContainer : Consumer raised exception, processing can restart if the connection factory supports it. Exception summary: org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: no further information
+2024-09-07T08:54:14.187+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-8] o.s.a.r.l.SimpleMessageListenerContainer : Restarting Consumer@f927235: tags=[[]], channel=null, acknowledgeMode=MANUAL local queue size=0
+2024-09-07T08:54:14.273+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-9] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:54:14.340+07:00 ERROR 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-9] o.s.a.r.l.SimpleMessageListenerContainer : Failed to check/redeclare auto-delete queue(s).
+2024-09-07T08:54:14.342+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-9] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:54:19.731+07:00  WARN 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-9] o.s.a.r.l.SimpleMessageListenerContainer : Consumer raised exception, processing can restart if the connection factory supports it. Exception summary: org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: no further information
+2024-09-07T08:54:19.736+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-9] o.s.a.r.l.SimpleMessageListenerContainer : Restarting Consumer@47869db1: tags=[[]], channel=null, acknowledgeMode=MANUAL local queue size=0
+2024-09-07T08:54:19.761+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-10] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:54:19.770+07:00 ERROR 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-10] o.s.a.r.l.SimpleMessageListenerContainer : Failed to check/redeclare auto-delete queue(s).
+2024-09-07T08:54:19.771+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-10] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:54:24.929+07:00  WARN 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-10] o.s.a.r.l.SimpleMessageListenerContainer : Consumer raised exception, processing can restart if the connection factory supports it. Exception summary: org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: no further information
+2024-09-07T08:54:24.939+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-10] o.s.a.r.l.SimpleMessageListenerContainer : Restarting Consumer@702233ba: tags=[[]], channel=null, acknowledgeMode=MANUAL local queue size=0
+2024-09-07T08:54:25.001+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-11] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:54:25.019+07:00 ERROR 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-11] o.s.a.r.l.SimpleMessageListenerContainer : Failed to check/redeclare auto-delete queue(s).
+2024-09-07T08:54:25.020+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-11] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:54:26.483+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-12] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2024-09-07T08:54:26.542+07:00  INFO 34716 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-12] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2024-09-07T08:54:27.298+07:00  INFO 34716 --- [DoiSoatGD] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-07T08:54:28.394+07:00  INFO 34716 --- [DoiSoatGD] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-07T08:54:28.740+07:00  INFO 34716 --- [DoiSoatGD] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-07T08:54:45.881+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : Starting PartnerSessionApplication using Java 21 with PID 38372 (E:\Learn\microservice-doisoatBE\partner-session\target\classes started by tuana in E:\Learn\microservice-doisoatBE)
+2024-09-07T08:54:45.887+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : No active profile set, falling back to 1 default profile: "default"
+2024-09-07T08:54:46.358+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-07T08:54:46.359+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-07T08:54:49.794+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-07T08:54:50.041+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 229 ms. Found 11 JPA repository interfaces.
+2024-09-07T08:54:51.687+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-09-07T08:54:51.712+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-07T08:54:51.713+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-09-07T08:54:51.810+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] o.a.c.c.C.[.[.[/partnersession]          : Initializing Spring embedded WebApplicationContext
+2024-09-07T08:54:51.811+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5451 ms
+2024-09-07T08:54:52.392+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-07T08:54:52.492+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-07T08:54:52.551+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-07T08:54:53.114+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-07T08:54:53.181+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-07T08:54:54.064+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7f1585dc
+2024-09-07T08:54:54.067+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-07T08:54:56.482+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-07T08:54:56.780+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-07T08:54:57.565+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-07T08:55:03.164+07:00  WARN 38372 --- [DoiSoatGD] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-07T08:55:06.093+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-09-07T08:55:08.436+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-07T08:55:08.783+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/partnersession'
+2024-09-07T08:55:08.791+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:55:08.802+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] o.s.a.r.l.SimpleMessageListenerContainer : Broker not available; cannot force queue declarations during start: java.net.ConnectException: Connection refused: no further information
+2024-09-07T08:55:08.817+07:00  INFO 38372 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:55:08.822+07:00 ERROR 38372 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] o.s.a.r.l.SimpleMessageListenerContainer : Failed to check/redeclare auto-delete queue(s).
+
+org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: no further information
+	at org.springframework.amqp.rabbit.support.RabbitExceptionTranslator.convertRabbitAccessException(RabbitExceptionTranslator.java:61) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.createBareConnection(AbstractConnectionFactory.java:622) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.CachingConnectionFactory.createConnection(CachingConnectionFactory.java:726) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.ConnectionFactoryUtils.createConnection(ConnectionFactoryUtils.java:257) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.doExecute(RabbitTemplate.java:2249) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.execute(RabbitTemplate.java:2222) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.execute(RabbitTemplate.java:2202) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.core.RabbitAdmin.getQueueInfo(RabbitAdmin.java:467) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.core.RabbitAdmin.getQueueProperties(RabbitAdmin.java:451) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.attemptDeclarations(AbstractMessageListenerContainer.java:1960) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.redeclareElementsIfNecessary(AbstractMessageListenerContainer.java:1924) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.initialize(SimpleMessageListenerContainer.java:1479) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1320) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:751) ~[na:na]
+	at com.rabbitmq.client.impl.SocketFrameHandlerFactory.create(SocketFrameHandlerFactory.java:61) ~[amqp-client-5.21.0.jar:5.21.0]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:1249) ~[amqp-client-5.21.0.jar:5.21.0]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:1198) ~[amqp-client-5.21.0.jar:5.21.0]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.connectAddresses(AbstractConnectionFactory.java:668) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.connect(AbstractConnectionFactory.java:637) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.createBareConnection(AbstractConnectionFactory.java:584) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	... 12 common frames omitted
+
+2024-09-07T08:55:08.837+07:00  INFO 38372 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:55:08.873+07:00  INFO 38372 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : Started PartnerSessionApplication in 24.202 seconds (process running for 28.005)
+2024-09-07T08:55:09.612+07:00  INFO 38372 --- [DoiSoatGD] [RMI TCP Connection(2)-172.22.208.1] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:55:09.616+07:00  WARN 38372 --- [DoiSoatGD] [RMI TCP Connection(2)-172.22.208.1] o.s.b.a.amqp.RabbitHealthIndicator       : Rabbit health check failed
+
+org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: no further information
+	at org.springframework.amqp.rabbit.support.RabbitExceptionTranslator.convertRabbitAccessException(RabbitExceptionTranslator.java:61) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.createBareConnection(AbstractConnectionFactory.java:622) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.CachingConnectionFactory.createConnection(CachingConnectionFactory.java:726) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.ConnectionFactoryUtils.createConnection(ConnectionFactoryUtils.java:257) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.doExecute(RabbitTemplate.java:2249) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.execute(RabbitTemplate.java:2222) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.execute(RabbitTemplate.java:2202) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.boot.actuate.amqp.RabbitHealthIndicator.getVersion(RabbitHealthIndicator.java:49) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.amqp.RabbitHealthIndicator.doHealthCheck(RabbitHealthIndicator.java:44) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.AbstractHealthIndicator.health(AbstractHealthIndicator.java:82) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthIndicator.getHealth(HealthIndicator.java:37) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpoint.getHealth(HealthEndpoint.java:82) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpoint.getHealth(HealthEndpoint.java:41) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getLoggedHealth(HealthEndpointSupport.java:172) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getContribution(HealthEndpointSupport.java:145) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getAggregateContribution(HealthEndpointSupport.java:156) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getContribution(HealthEndpointSupport.java:141) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getHealth(HealthEndpointSupport.java:110) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpointSupport.getHealth(HealthEndpointSupport.java:81) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpoint.health(HealthEndpoint.java:76) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.health.HealthEndpoint.health(HealthEndpoint.java:66) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:281) ~[spring-core-6.1.12.jar:6.1.12]
+	at org.springframework.boot.actuate.endpoint.invoke.reflect.ReflectiveOperationInvoker.invoke(ReflectiveOperationInvoker.java:74) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.endpoint.annotation.AbstractDiscoveredOperation.invoke(AbstractDiscoveredOperation.java:60) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.endpoint.jmx.EndpointMBean.invoke(EndpointMBean.java:124) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at org.springframework.boot.actuate.endpoint.jmx.EndpointMBean.invoke(EndpointMBean.java:97) ~[spring-boot-actuator-3.3.3.jar:3.3.3]
+	at java.management/com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:803) ~[na:na]
+	at java.management/com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:802) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1472) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1310) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1405) ~[na:na]
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829) ~[na:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:714) ~[na:na]
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721) ~[na:na]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400) ~[na:na]
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:751) ~[na:na]
+	at com.rabbitmq.client.impl.SocketFrameHandlerFactory.create(SocketFrameHandlerFactory.java:61) ~[amqp-client-5.21.0.jar:5.21.0]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:1249) ~[amqp-client-5.21.0.jar:5.21.0]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:1198) ~[amqp-client-5.21.0.jar:5.21.0]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.connectAddresses(AbstractConnectionFactory.java:668) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.connect(AbstractConnectionFactory.java:637) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.createBareConnection(AbstractConnectionFactory.java:584) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	... 47 common frames omitted
+
+2024-09-07T08:55:09.637+07:00  INFO 38372 --- [DoiSoatGD] [RMI TCP Connection(1)-172.22.208.1] o.a.c.c.C.[.[.[/partnersession]          : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-07T08:55:09.639+07:00  INFO 38372 --- [DoiSoatGD] [RMI TCP Connection(1)-172.22.208.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-07T08:55:09.647+07:00  INFO 38372 --- [DoiSoatGD] [RMI TCP Connection(1)-172.22.208.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2024-09-07T08:55:13.961+07:00  WARN 38372 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] o.s.a.r.l.SimpleMessageListenerContainer : Consumer raised exception, processing can restart if the connection factory supports it. Exception summary: org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: no further information
+2024-09-07T08:55:13.968+07:00  INFO 38372 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] o.s.a.r.l.SimpleMessageListenerContainer : Restarting Consumer@3e47d676: tags=[[]], channel=null, acknowledgeMode=MANUAL local queue size=0
+2024-09-07T08:55:13.972+07:00  INFO 38372 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:55:13.983+07:00 ERROR 38372 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Failed to check/redeclare auto-delete queue(s).
+2024-09-07T08:55:13.983+07:00  INFO 38372 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:55:15.092+07:00  INFO 38372 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-3] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2024-09-07T08:55:15.093+07:00  INFO 38372 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-3] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2024-09-07T08:55:15.134+07:00  INFO 38372 --- [DoiSoatGD] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-07T08:55:15.141+07:00  INFO 38372 --- [DoiSoatGD] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-07T08:55:15.184+07:00  INFO 38372 --- [DoiSoatGD] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-07T08:56:44.504+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : Starting PartnerSessionApplication using Java 21 with PID 11892 (E:\Learn\microservice-doisoatBE\partner-session\target\classes started by tuana in E:\Learn\microservice-doisoatBE)
+2024-09-07T08:56:44.508+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : No active profile set, falling back to 1 default profile: "default"
+2024-09-07T08:56:44.628+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-07T08:56:44.628+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-07T08:56:47.700+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-07T08:56:47.848+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 134 ms. Found 11 JPA repository interfaces.
+2024-09-07T08:56:50.320+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-09-07T08:56:50.344+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-07T08:56:50.344+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-09-07T08:56:50.427+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] o.a.c.c.C.[.[.[/partnersession]          : Initializing Spring embedded WebApplicationContext
+2024-09-07T08:56:50.428+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5798 ms
+2024-09-07T08:56:51.155+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-07T08:56:51.262+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-07T08:56:51.315+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-07T08:56:51.820+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-07T08:56:51.860+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-07T08:56:53.036+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4c98be71
+2024-09-07T08:56:53.039+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-07T08:56:57.728+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-07T08:56:58.761+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-07T08:56:59.894+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-07T08:57:05.208+07:00  WARN 11892 --- [DoiSoatGD] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-07T08:57:06.989+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-09-07T08:57:08.871+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-07T08:57:09.112+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/partnersession'
+2024-09-07T08:57:09.118+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T08:57:09.445+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#5cd8d7c3:0/SimpleConnection@7b55af67 [delegate=amqp://guest@127.0.0.1:5672/, localPort=51754]
+2024-09-07T08:57:10.194+07:00  INFO 11892 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : Started PartnerSessionApplication in 26.602 seconds (process running for 29.147)
+2024-09-07T08:57:11.073+07:00  INFO 11892 --- [DoiSoatGD] [RMI TCP Connection(3)-172.22.208.1] o.a.c.c.C.[.[.[/partnersession]          : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-07T08:57:11.075+07:00  INFO 11892 --- [DoiSoatGD] [RMI TCP Connection(3)-172.22.208.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-07T08:57:11.080+07:00  INFO 11892 --- [DoiSoatGD] [RMI TCP Connection(3)-172.22.208.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2024-09-07T08:59:56.120+07:00  WARN 11892 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] s.a.r.l.ConditionalRejectingErrorHandler : Execution of Rabbit message listener failed.
+
+org.springframework.amqp.rabbit.support.ListenerExecutionFailedException: Listener method could not be invoked with the incoming message
+Endpoint handler details:
+Method [public void com.devteria.partnersession.service.ArgumentControlByDayService.handleMessage(com.devteria.partnersession.dto.request.ArgumentControlByDayRequest,com.rabbitmq.client.Channel,long) throws java.lang.Exception]
+Bean [com.devteria.partnersession.service.ArgumentControlByDayService@6b318af1]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:282) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandlerAndProcessResult(MessagingMessageListenerAdapter.java:225) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:149) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1682) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1604) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1592) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1583) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListenerAndHandleException(AbstractMessageListenerContainer.java:1528) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.lambda$executeListener$8(AbstractMessageListenerContainer.java:1506) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at io.micrometer.observation.Observation.observe(Observation.java:499) ~[micrometer-observation-1.13.3.jar:1.13.3]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1506) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:1082) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:1018) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1421) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1322) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.springframework.messaging.converter.MessageConversionException: Cannot convert from [[B] to [com.devteria.partnersession.dto.request.ArgumentControlByDayRequest] for GenericMessage [payload=byte[139], headers={amqp_receivedDeliveryMode=PERSISTENT, amqp_receivedExchange=doisoat_exchange, amqp_deliveryTag=1, amqp_consumerQueue=doisoat_json, amqp_redelivered=false, amqp_receivedRoutingKey=doisoat_routing_json_key, amqp_contentEncoding=UTF-8, id=11391bf6-69d2-c3dd-73d6-0088ffdc31f1, amqp_consumerTag=amq.ctag-1LMzs58wYsQZdGQspvE71g, amqp_lastInBatch=false, contentType=application/json, __TypeId__=com.devteria.partnersession.dto.request.ArgumentControlByDayRequest, timestamp=1725674396112}]
+	at org.springframework.messaging.handler.annotation.support.PayloadMethodArgumentResolver.resolveArgument(PayloadMethodArgumentResolver.java:151) ~[spring-messaging-6.1.12.jar:6.1.12]
+	at org.springframework.amqp.rabbit.listener.adapter.AmqpMessageHandlerMethodFactory$OptionalEmptyAwarePayloadArgumentResolver.resolveArgument(AmqpMessageHandlerMethodFactory.java:99) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.messaging.handler.invocation.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:118) ~[spring-messaging-6.1.12.jar:6.1.12]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:147) ~[spring-messaging-6.1.12.jar:6.1.12]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:115) ~[spring-messaging-6.1.12.jar:6.1.12]
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:75) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:278) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	... 15 common frames omitted
+
+2024-09-07T08:59:56.154+07:00  WARN 11892 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] ingErrorHandler$DefaultExceptionStrategy : Fatal message conversion error; message rejected; it will be dropped or routed to a dead letter exchange, if so configured: (Body:'[B@72898fea(byte[139])' MessageProperties [headers={__TypeId__=com.devteria.partnersession.dto.request.ArgumentControlByDayRequest}, contentType=application/json, contentEncoding=UTF-8, contentLength=0, receivedDeliveryMode=PERSISTENT, priority=0, redelivered=false, receivedExchange=doisoat_exchange, receivedRoutingKey=doisoat_routing_json_key, deliveryTag=1, consumerTag=amq.ctag-1LMzs58wYsQZdGQspvE71g, consumerQueue=doisoat_json])
+2024-09-07T08:59:56.155+07:00 ERROR 11892 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] o.s.a.r.l.SimpleMessageListenerContainer : Execution of Rabbit message listener failed, and the error handler threw an exception
+
+org.springframework.amqp.AmqpRejectAndDontRequeueException: Error Handler converted exception to fatal
+	at org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler.handleError(ConditionalRejectingErrorHandler.java:147) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeErrorHandler(AbstractMessageListenerContainer.java:1475) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.handleListenerException(AbstractMessageListenerContainer.java:1768) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListenerAndHandleException(AbstractMessageListenerContainer.java:1549) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.lambda$executeListener$8(AbstractMessageListenerContainer.java:1506) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at io.micrometer.observation.Observation.observe(Observation.java:499) ~[micrometer-observation-1.13.3.jar:1.13.3]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1506) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:1082) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:1018) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1421) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1322) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.springframework.amqp.rabbit.support.ListenerExecutionFailedException: Listener method could not be invoked with the incoming message
+Endpoint handler details:
+Method [public void com.devteria.partnersession.service.ArgumentControlByDayService.handleMessage(com.devteria.partnersession.dto.request.ArgumentControlByDayRequest,com.rabbitmq.client.Channel,long) throws java.lang.Exception]
+Bean [com.devteria.partnersession.service.ArgumentControlByDayService@6b318af1]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:282) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandlerAndProcessResult(MessagingMessageListenerAdapter.java:225) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:149) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1682) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1604) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1592) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1583) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListenerAndHandleException(AbstractMessageListenerContainer.java:1528) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	... 8 common frames omitted
+Caused by: org.springframework.messaging.converter.MessageConversionException: Cannot convert from [[B] to [com.devteria.partnersession.dto.request.ArgumentControlByDayRequest] for GenericMessage [payload=byte[139], headers={amqp_receivedDeliveryMode=PERSISTENT, amqp_receivedExchange=doisoat_exchange, amqp_deliveryTag=1, amqp_consumerQueue=doisoat_json, amqp_redelivered=false, amqp_receivedRoutingKey=doisoat_routing_json_key, amqp_contentEncoding=UTF-8, id=11391bf6-69d2-c3dd-73d6-0088ffdc31f1, amqp_consumerTag=amq.ctag-1LMzs58wYsQZdGQspvE71g, amqp_lastInBatch=false, contentType=application/json, __TypeId__=com.devteria.partnersession.dto.request.ArgumentControlByDayRequest, timestamp=1725674396112}]
+	at org.springframework.messaging.handler.annotation.support.PayloadMethodArgumentResolver.resolveArgument(PayloadMethodArgumentResolver.java:151) ~[spring-messaging-6.1.12.jar:6.1.12]
+	at org.springframework.amqp.rabbit.listener.adapter.AmqpMessageHandlerMethodFactory$OptionalEmptyAwarePayloadArgumentResolver.resolveArgument(AmqpMessageHandlerMethodFactory.java:99) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.messaging.handler.invocation.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:118) ~[spring-messaging-6.1.12.jar:6.1.12]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:147) ~[spring-messaging-6.1.12.jar:6.1.12]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:115) ~[spring-messaging-6.1.12.jar:6.1.12]
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:75) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:278) ~[spring-rabbit-3.1.7.jar:3.1.7]
+	... 15 common frames omitted
+
+2024-09-07T09:01:28.334+07:00  INFO 11892 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2024-09-07T09:01:28.451+07:00  INFO 11892 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2024-09-07T09:01:29.520+07:00  INFO 11892 --- [DoiSoatGD] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-07T09:01:29.732+07:00  INFO 11892 --- [DoiSoatGD] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-07T09:01:30.039+07:00  INFO 11892 --- [DoiSoatGD] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-07T09:22:59.426+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : Starting PartnerSessionApplication using Java 21 with PID 29024 (E:\Learn\microservice-doisoatBE\partner-session\target\classes started by tuana in E:\Learn\microservice-doisoatBE)
+2024-09-07T09:22:59.441+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : No active profile set, falling back to 1 default profile: "default"
+2024-09-07T09:22:59.578+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-07T09:22:59.578+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-07T09:23:02.271+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-07T09:23:02.412+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 126 ms. Found 11 JPA repository interfaces.
+2024-09-07T09:23:03.816+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-09-07T09:23:03.836+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-07T09:23:03.837+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-09-07T09:23:03.915+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] o.a.c.c.C.[.[.[/partnersession]          : Initializing Spring embedded WebApplicationContext
+2024-09-07T09:23:03.916+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4337 ms
+2024-09-07T09:23:04.448+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-07T09:23:04.534+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-07T09:23:04.595+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-07T09:23:05.117+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-07T09:23:05.159+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-07T09:23:05.842+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@775e041e
+2024-09-07T09:23:05.844+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-07T09:23:08.168+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-07T09:23:08.775+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-07T09:23:09.677+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-07T09:23:11.600+07:00  WARN 29024 --- [DoiSoatGD] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-07T09:23:12.569+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-09-07T09:23:14.210+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-07T09:23:14.434+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/partnersession'
+2024-09-07T09:23:14.440+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T09:23:14.736+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#4acff905:0/SimpleConnection@4b8536c5 [delegate=amqp://guest@127.0.0.1:5672/, localPort=52904]
+2024-09-07T09:23:14.980+07:00  INFO 29024 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : Started PartnerSessionApplication in 16.367 seconds (process running for 18.325)
+2024-09-07T09:23:15.624+07:00  INFO 29024 --- [DoiSoatGD] [RMI TCP Connection(2)-172.22.208.1] o.a.c.c.C.[.[.[/partnersession]          : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-07T09:23:15.625+07:00  INFO 29024 --- [DoiSoatGD] [RMI TCP Connection(2)-172.22.208.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-07T09:23:15.628+07:00  INFO 29024 --- [DoiSoatGD] [RMI TCP Connection(2)-172.22.208.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2024-09-07T09:24:56.952+07:00  INFO 29024 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.s.ArgumentControlByDayService      : Received JSON message -> ArgumentControlByDayRequest(name=DS070924004, salesPartner=Sacombank, supplyPartner=Iris, dateControl=08/07/2024, validFromDate=null, validToDate=null)
+2024-09-07T09:24:57.082+07:00  INFO 29024 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.service.GetListCsvReport           : doc file csv: C:\\DoiSoat\2024\Sacombank\DS-T07\DoiSoatPROTON_08072024_08072024.csv
+2024-09-07T09:24:57.370+07:00  INFO 29024 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.service.GetListCsvReport           : doc file csv: C:\\DoiSoat\2024\Proton\DS-T07\08-07 
+2024-09-07T09:24:57.372+07:00  INFO 29024 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.service.ProcessDoiSoatProtonIris   : doc file xlsx: C:\\DoiSoat\2024\Iris\DS-T07\08-07 
+2024-09-07T09:24:57.459+07:00  INFO 29024 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.s.ArgumentControlByDayService      : Received JSON message -> ArgumentControlByDayRequest(name=DS070924004, salesPartner=Sacombank, supplyPartner=Iris, dateControl=08/07/2024, validFromDate=null, validToDate=null)
+2024-09-07T09:33:15.823+07:00  INFO 29024 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.s.ArgumentControlByDayService      : Received JSON message -> ArgumentControlByDayRequest(name=DS070924005, salesPartner=Sacombank, supplyPartner=Iris, dateControl=09/07/2024, validFromDate=null, validToDate=null)
+2024-09-07T09:33:15.894+07:00  INFO 29024 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.service.GetListCsvReport           : doc file csv: C:\\DoiSoat\2024\Sacombank\DS-T07\DoiSoatPROTON_09072024_09072024.csv
+2024-09-07T09:33:16.121+07:00  INFO 29024 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.service.GetListCsvReport           : doc file csv: C:\\DoiSoat\2024\Proton\DS-T07\09-07 
+2024-09-07T09:33:16.396+07:00  INFO 29024 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.service.ProcessDoiSoatProtonIris   : doc file xlsx: C:\\DoiSoat\2024\Iris\DS-T07\09-07 
+2024-09-07T09:33:16.542+07:00  INFO 29024 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.s.ArgumentControlByDayService      : Received JSON message -> ArgumentControlByDayRequest(name=DS070924005, salesPartner=Sacombank, supplyPartner=Iris, dateControl=09/07/2024, validFromDate=null, validToDate=null)
+2024-09-07T09:37:56.157+07:00  INFO 29024 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2024-09-07T09:37:56.183+07:00  INFO 29024 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2024-09-07T09:37:56.709+07:00  INFO 29024 --- [DoiSoatGD] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-07T09:37:56.874+07:00  INFO 29024 --- [DoiSoatGD] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-07T09:37:57.105+07:00  INFO 29024 --- [DoiSoatGD] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-07T09:38:08.476+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : Starting PartnerSessionApplication using Java 21 with PID 23992 (E:\Learn\microservice-doisoatBE\partner-session\target\classes started by tuana in E:\Learn\microservice-doisoatBE)
+2024-09-07T09:38:08.480+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : No active profile set, falling back to 1 default profile: "default"
+2024-09-07T09:38:08.567+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-07T09:38:08.567+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-07T09:38:11.104+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-07T09:38:11.251+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 136 ms. Found 11 JPA repository interfaces.
+2024-09-07T09:38:12.607+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-09-07T09:38:12.625+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-07T09:38:12.625+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-09-07T09:38:12.695+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.a.c.c.C.[.[.[/partnersession]          : Initializing Spring embedded WebApplicationContext
+2024-09-07T09:38:12.695+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4127 ms
+2024-09-07T09:38:13.193+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-07T09:38:13.278+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-07T09:38:13.323+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-07T09:38:13.748+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-07T09:38:13.784+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-07T09:38:14.661+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4e8dda3a
+2024-09-07T09:38:14.665+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-07T09:38:17.529+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-07T09:38:18.425+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-07T09:38:19.161+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-07T09:38:20.547+07:00  WARN 23992 --- [DoiSoatGD] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-07T09:38:21.326+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-09-07T09:38:22.491+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-07T09:38:22.679+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/partnersession'
+2024-09-07T09:38:22.684+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T09:38:22.828+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#2d2fccf4:0/SimpleConnection@594e2150 [delegate=amqp://guest@127.0.0.1:5672/, localPort=53378]
+2024-09-07T09:38:23.010+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : Started PartnerSessionApplication in 15.349 seconds (process running for 16.858)
+2024-09-07T09:38:24.408+07:00  INFO 23992 --- [DoiSoatGD] [RMI TCP Connection(3)-172.22.208.1] o.a.c.c.C.[.[.[/partnersession]          : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-07T09:38:24.408+07:00  INFO 23992 --- [DoiSoatGD] [RMI TCP Connection(3)-172.22.208.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-07T09:38:24.412+07:00  INFO 23992 --- [DoiSoatGD] [RMI TCP Connection(3)-172.22.208.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2024-09-07T09:40:12.175+07:00  INFO 23992 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.s.ArgumentControlByDayService      : Received JSON message -> ArgumentControlByDayRequest(name=DS070924006, salesPartner=Sacombank, supplyPartner=Iris, dateControl=09/07/2024, validFromDate=null, validToDate=null)
+2024-09-07T09:40:12.480+07:00  INFO 23992 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.service.GetListCsvReport           : doc file csv: C:\\DoiSoat\2024\Sacombank\DS-T07\DoiSoatPROTON_09072024_09072024.csv
+2024-09-07T09:40:12.925+07:00  INFO 23992 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.service.GetListCsvReport           : doc file csv: C:\\DoiSoat\2024\Proton\DS-T07\09-07 
+2024-09-07T09:40:13.159+07:00  INFO 23992 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.service.ProcessDoiSoatProtonIris   : doc file xlsx: C:\\DoiSoat\2024\Iris\DS-T07\09-07 
+2024-09-07T09:40:13.526+07:00  INFO 23992 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] c.d.p.s.ArgumentControlByDayService      : Received JSON message -> ArgumentControlByDayRequest(name=DS070924006, salesPartner=Sacombank, supplyPartner=Iris, dateControl=09/07/2024, validFromDate=null, validToDate=null)
+2024-09-07T09:43:25.863+07:00  INFO 23992 --- [DoiSoatGD] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 1 deletion, 0 modifications)
+2024-09-07T09:43:26.418+07:00  INFO 23992 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2024-09-07T09:43:26.835+07:00  INFO 23992 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2024-09-07T09:43:27.236+07:00  INFO 23992 --- [DoiSoatGD] [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-07T09:43:27.464+07:00  INFO 23992 --- [DoiSoatGD] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-07T09:43:27.756+07:00  INFO 23992 --- [DoiSoatGD] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-07T09:43:29.598+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : Starting PartnerSessionApplication using Java 21 with PID 23992 (E:\Learn\microservice-doisoatBE\partner-session\target\classes started by tuana in E:\Learn\microservice-doisoatBE)
+2024-09-07T09:43:29.599+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : No active profile set, falling back to 1 default profile: "default"
+2024-09-07T09:43:30.983+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-07T09:43:31.134+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 149 ms. Found 11 JPA repository interfaces.
+2024-09-07T09:43:31.911+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-09-07T09:43:31.915+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-07T09:43:31.915+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-09-07T09:43:31.958+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.a.c.c.C.[.[.[/partnersession]          : Initializing Spring embedded WebApplicationContext
+2024-09-07T09:43:31.958+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2350 ms
+2024-09-07T09:43:32.197+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-07T09:43:32.202+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-07T09:43:32.228+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-07T09:43:32.231+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2024-09-07T09:43:32.422+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@b1b38e2
+2024-09-07T09:43:32.434+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2024-09-07T09:43:32.788+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-07T09:43:33.149+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-07T09:43:33.899+07:00  WARN 23992 --- [DoiSoatGD] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-07T09:43:34.400+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-09-07T09:43:35.091+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-07T09:43:35.141+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/partnersession'
+2024-09-07T09:43:35.142+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T09:43:35.198+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#286f5a19:0/SimpleConnection@31200f9 [delegate=amqp://guest@127.0.0.1:5672/, localPort=53540]
+2024-09-07T09:43:35.267+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : Started PartnerSessionApplication in 5.838 seconds (process running for 329.114)
+2024-09-07T09:43:35.270+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-09-07T09:43:36.537+07:00  INFO 23992 --- [DoiSoatGD] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+2024-09-07T09:43:36.543+07:00  INFO 23992 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2024-09-07T09:43:37.268+07:00  INFO 23992 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2024-09-07T09:43:37.289+07:00  INFO 23992 --- [DoiSoatGD] [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-07T09:43:37.290+07:00  INFO 23992 --- [DoiSoatGD] [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2024-09-07T09:43:37.302+07:00  INFO 23992 --- [DoiSoatGD] [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2024-09-07T09:43:37.422+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : Starting PartnerSessionApplication using Java 21 with PID 23992 (E:\Learn\microservice-doisoatBE\partner-session\target\classes started by tuana in E:\Learn\microservice-doisoatBE)
+2024-09-07T09:43:37.422+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : No active profile set, falling back to 1 default profile: "default"
+2024-09-07T09:43:37.849+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-07T09:43:37.896+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46 ms. Found 11 JPA repository interfaces.
+2024-09-07T09:43:38.112+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-09-07T09:43:38.113+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-07T09:43:38.113+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-09-07T09:43:38.152+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.a.c.c.C.[.[.[/partnersession]          : Initializing Spring embedded WebApplicationContext
+2024-09-07T09:43:38.152+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 727 ms
+2024-09-07T09:43:38.352+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-07T09:43:38.354+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-07T09:43:38.361+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-07T09:43:38.362+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2024-09-07T09:43:38.385+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@43d8f542
+2024-09-07T09:43:38.385+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2024-09-07T09:43:38.609+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-07T09:43:38.766+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-07T09:43:39.424+07:00  WARN 23992 --- [DoiSoatGD] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-07T09:43:40.164+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-09-07T09:43:41.202+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-07T09:43:41.251+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/partnersession'
+2024-09-07T09:43:41.253+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2024-09-07T09:43:41.270+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#490b3bcc:0/SimpleConnection@737b021 [delegate=amqp://guest@127.0.0.1:5672/, localPort=53554]
+2024-09-07T09:43:41.307+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] c.d.p.PartnerSessionApplication          : Started PartnerSessionApplication in 3.914 seconds (process running for 335.154)
+2024-09-07T09:43:41.309+07:00  INFO 23992 --- [DoiSoatGD] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-09-07T09:48:40.572+07:00  INFO 23992 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2024-09-07T09:48:40.916+07:00  INFO 23992 --- [DoiSoatGD] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2024-09-07T09:48:41.165+07:00  INFO 23992 --- [DoiSoatGD] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-07T09:48:41.260+07:00  INFO 23992 --- [DoiSoatGD] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2024-09-07T09:48:41.629+07:00  INFO 23992 --- [DoiSoatGD] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.

@@ -1,0 +1,167 @@
+
+services:
+
+  profile-service:
+    build:
+      context: ./profile-service
+      dockerfile: Dockerfile
+    container_name: profile-service
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://root:mim123456@mongodb:27017/profile-service?authSource=admin
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - KEYCLOAK_URL=http://keycloak:8180
+      - KEYCLOAK_REALM=profile
+      - KEYCLOAK_CLIENT_ID=profile-service
+      - KEYCLOAK_CLIENT_SECRET=xhznTWNjfOVbgHNqKh0dJyan8ivNScaH
+    depends_on:
+      - mongodb
+      - kafka
+      - keycloak
+    networks:
+      - mynetwork
+
+  notification-service:
+    build:
+      context: ./notification-service
+      dockerfile: Dockerfile
+    container_name: notification-service
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://root:mim123456@mongodb:27017/notification-service?authSource=admin
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    depends_on:
+      - mongodb
+      - kafka
+    networks:
+      - mynetwork
+
+  partner-session:
+    build:
+      context: ./partner-session
+      dockerfile: Dockerfile
+    container_name: partner-session
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/partnersession?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=mim123456
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+    depends_on:
+      - db
+      - rabbitmq
+    networks:
+      - mynetwork
+
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    container_name: api-gateway
+    ports:
+      - "8888:8888"
+    depends_on:
+      - partner-session
+      - profile-service
+      - notification-service
+    networks:
+      - mynetwork
+
+  db:
+    image: mysql:8.0.37-debian
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: mim123456
+      MYSQL_DATABASE: partnersession
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+
+  rabbitmq:
+    image: rabbitmq:3.13.6-management
+    container_name: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    ports:
+      - "5672:5672"     # RabbitMQ default port
+      - "15672:15672"   # Management UI port
+    networks:
+      - mynetwork
+
+  mongodb:
+    image: bitnami/mongodb:7.0.11
+    container_name: mongodb
+    environment:
+      - MONGODB_ROOT_USER=root
+      - MONGODB_ROOT_PASSWORD=mim123456
+#      - MONGODB_DATABASE=profile-service
+    ports:
+      - "27017:27017"
+    networks:
+      - mynetwork
+    volumes:
+      - mongodb-data:/bitnami/mongodb
+
+  kafka:
+    image: apache/kafka:3.7.0
+    container_name: kafka
+    environment:
+      - KAFKA_CFG_NODE_ID=1 # Mỗi broker phải có một node id duy nhất
+      - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093 # Cấu hình KRaft quorum
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_LOG_DIRS=/bitnami/kafka/data
+      - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    volumes:
+      - kafka-data:/bitnami/kafka
+    ports:
+      - "9092:9092"  # Port Kafka listener
+    networks:
+      - mynetwork
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:25.0.4
+    environment:
+      # Sử dụng cơ sở dữ liệu H2
+      KC_DB: h2
+      # Thông tin quản trị viên
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      # Cấu hình hostname cho Keycloak
+      KC_HOSTNAME: localhost
+      KC_HTTP_ENABLED: "true"
+      KC_PROXY: "edge"
+      KC_LOG_LEVEL: INFO
+      # Import file realm.json
+      KC_IMPORT_REALM: "/opt/keycloak/data/import/realm.json"
+    volumes:
+      - ./realm-config:/opt/keycloak/data/import
+    ports:
+      - 8180:8080
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  mysql-data:
+  mongodb-data:
+  kafka-data:
+

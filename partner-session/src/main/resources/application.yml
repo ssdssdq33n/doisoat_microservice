@@ -1,0 +1,77 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /partnersession
+spring:
+  application:
+    name: DoiSoatGD
+  datasource:
+    url: jdbc:mysql://localhost:3306/partnersession
+    username: root
+    password: mim123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  mvc:
+    async:
+      request-timeout: 300000
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8180/realms/profile
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+rabbitmq:
+  queue:
+    json:
+      name: doisoat_json
+      month: doisoat_month
+  exchange:
+    name: doisoat_exchange
+  routing:
+    json:
+      key: doisoat_routing_json_key
+      month: doisoat_routing_json_month
+
+logging:
+  level:
+    root: INFO
+    com.protontech.Transaction.services.ProcessDoiSoatProtonIris: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/application.log
+
+
+
+external:
+  api:
+    url: 'https://pg-admin.protontech.vn/pg-admin.1.0/report/public/export-detail-report'
+    downloadfile-Proton: 'https://api-dev-doisoat.protontech.vn/api/downloadFromExternalApi'
+proton:
+  report:
+    save:
+      path: 'C:\\DoiSoat'
+  refund-transaction:
+    save:
+      path: 'C:\\HoanTra'
+
+
+resilience4j:
+  timelimiter:
+    metrics:
+      enabled: true
+    instances:
+      argumentControlByDayService:
+        timeoutDuration: 300s
+        cancel-running-future: true

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .email-container {
+            background-color: #fff;
+            width: 80%;
+            max-width: 600px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #3B82F6;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .header h2 {
+            margin: 0;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .content p {
+            margin: 10px 0;
+        }
+
+        .credentials {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 4px solid #3B82F6;
+            margin: 10px 0;
+        }
+
+        .credentials p {
+            margin: 5px 0;
+        }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+     <div class="email-container">
+         <div class="header">
+             <h2>Tài khoản đối soát</h2>
+         </div>
+         <div class="content">
+             <h3>Chào mừng đến với Proton</h3>
+             <h4>Xin chào <span th:text="${name}"></span></h4>
+             <p th:text="${headerTab}"></p>
+             <div class="credentials">
+                 <p>- Username: <span th:text="${username}"></span></p>
+                 <p>- Password: <span th:text="${password}"></span></p>
+             </div>
+            <p>Truy cập trang web <a href="https://doisoat-dev.protontech.vn/">https://doisoat-dev.protontech.vn/</a></p>
+             <p>* Đây là email của hệ thống, đề nghị không reply</p>
+         </div>
+     </div>
+</body>
+</html>

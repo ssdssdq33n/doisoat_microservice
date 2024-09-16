@@ -1,0 +1,22 @@
+{
+  "realm": "profile",
+  "clients": [
+    {
+      "clientId": "profile-service",
+      "secret": "xhznTWNjfOVbgHNqKh0dJyan8ivNScaH",
+      "enabled": true
+    }
+  ],
+  "users": [
+    {
+      "username": "admin",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "admin"
+        }
+      ]
+    }
+  ]
+}

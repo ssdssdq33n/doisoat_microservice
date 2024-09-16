@@ -1,0 +1,26 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /profile
+spring:
+  application:
+    name: profile-service
+  data:
+    mongodb:
+      uri: mongodb://root:mim123456@localhost:27017/profile-service?authSource=admin
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8180/realms/profile
+
+idp:
+  url: http://localhost:8180
+  client-id: profile-service
+  client-secret: xhznTWNjfOVbgHNqKh0dJyan8ivNScaH
